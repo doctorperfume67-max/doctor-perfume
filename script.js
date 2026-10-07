@@ -1,18 +1,18 @@
-const MIN_LOADER_TIME = 1800;
-const startedAt = performance.now();
+const MIN_LOADER_TIME=1850;
+const started=performance.now();
 
-function finishLoading() {
-  const elapsed = performance.now() - startedAt;
-  const remaining = Math.max(0, MIN_LOADER_TIME - elapsed);
-  window.setTimeout(() => {
+function reveal(){
+  const elapsed=performance.now()-started;
+  const wait=Math.max(0,MIN_LOADER_TIME-elapsed);
+  setTimeout(()=>{
     document.body.classList.add("loaded");
-    window.setTimeout(() => document.body.classList.add("ready"), 800);
-  }, remaining);
+    setTimeout(()=>document.body.classList.add("ready"),850);
+  },wait);
 }
 
-if (document.readyState === "complete") finishLoading();
-else window.addEventListener("load", finishLoading, { once: true });
+if(document.readyState==="complete") reveal();
+else window.addEventListener("load",reveal,{once:true});
 
-document.querySelectorAll('.social-link[href="#"]').forEach((link) => {
-  link.addEventListener("click", (event) => event.preventDefault());
+document.querySelectorAll('.social[href="#"]').forEach(link=>{
+  link.addEventListener("click",event=>event.preventDefault());
 });
