@@ -36,7 +36,20 @@
             src="assets/doctor-perfume-logo.jpeg"
             alt="Doctor Perfume — Heal in every drop"
             draggable="false"
+            onerror="this.hidden=true;this.nextElementSibling.hidden=false"
           >
+          <div class="brand-fallback" hidden aria-label="Doctor Perfume">
+            <div class="fallback-ring">
+              <div class="fallback-monogram">DP</div>
+              <div class="fallback-bottle">
+                <span class="bottle-cap"></span>
+                <span class="bottle-body">DP</span>
+              </div>
+            </div>
+            <div class="fallback-name">DOCTOR</div>
+            <div class="fallback-sub">PERFUME</div>
+            <div class="fallback-tag">Heal in every drop</div>
+          </div>
         </div>
 
         <div class="social-section">
