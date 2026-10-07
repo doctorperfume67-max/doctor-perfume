@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Doctor Perfume</title>
+<style>
+:root{--gold:#e3c878}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:#050505;overflow:hidden}
+body{font-family:Arial,Helvetica,sans-serif}
+.loader{
+  position:fixed;inset:0;z-index:20;
+  display:grid;place-items:center;align-content:center;gap:26px;
+  background:#050505;
+  transition:opacity .75s ease,visibility .75s ease;
+}
+.loader-ring{
+  width:138px;height:138px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid rgba(227,200,120,.18);
+  position:relative;
+}
+.loader-ring:before{
+  content:"";position:absolute;inset:-1px;border-radius:50%;
+  border:1px solid transparent;border-top-color:rgba(227,200,120,.9);
+  animation:spin 2s linear infinite;
+}
+.loader-dp{
+  color:var(--gold);
+  font:42px Georgia,"Times New Roman",serif;
+  letter-spacing:.08em;
+}
+.loader-line{width:120px;height:1px;background:rgba(227,200,120,.15);overflow:hidden}
+.loader-line span{display:block;width:50%;height:100%;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:sweep 1.3s ease-in-out infinite}
+body.loaded .loader{opacity:0;visibility:hidden}
+
+.stage{
+  position:fixed;inset:0;
+  display:grid;place-items:center;
+  background:#050505;
+  opacity:0;
+  transition:opacity .9s ease;
+}
+body.loaded .stage{opacity:1}
+
+.art{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100vw;
+  max-height:100vh;
+  object-fit:contain;
+  object-position:center;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+.shade{
+  position:absolute;inset:0;
+  pointer-events:none;
+  background:linear-gradient(to bottom,rgba(0,0,0,.02) 0%,rgba(0,0,0,.02) 70%,rgba(0,0,0,.35) 100%);
+}
+
+.socials{
+  position:absolute;
+  left:50%;
+  bottom:clamp(18px,3vh,34px);
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(227,200,120,.16);
+  background:rgba(0,0,0,.34);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.social{
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;
+  color:var(--gold);
+  border:1px solid rgba(227,200,120,.18);
+  background:rgba(227,200,120,.03);
+  text-decoration:none;
+}
+.social svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.social[data-s=tiktok] svg path,.social[data-s=facebook] svg path{fill:currentColor;stroke:none}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes sweep{from{transform:translateX(-110%)}to{transform:translateX(210%)}}
+
+@media (max-width:600px){
+  .art{max-width:100vw;max-height:100vh}
+  .social{width:42px;height:42px}
+  .socials{bottom:18px}
+}
+</style>
+</head>
+<body>
+<div class="loader">
+  <div class="loader-ring"><div class="loader-dp">DP</div></div>
+  <div class="loader-line"><span></span></div>
+</div>
+
+<main class="stage">
+  <img class="art" src="https://raw.githubusercontent.com/doctorperfume67-max/doctor-perfume/main/assets/doctor-perfume-bg.jpeg?raw=1" alt="Doctor Perfume">
+  <div class="shade"></div>
+  <nav class="socials" aria-label="Social media">
+    <a class="social" data-s="instagram" href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+    </a>
+    <a class="social" data-s="tiktok" href="#" aria-label="TikTok">
+      <svg viewBox="0 0 24 24"><path d="M14 4v10.1a4.1 4.1 0 1 1-3.2-4V13a1.7 1.7 0 1 0 1.2 1.6V4h2z"/><path d="M14 5.5c1.1 1.7 2.6 2.8 4.5 3.1V11c-1.7-.2-3.2-.9-4.5-2z"/></svg>
+    </a>
+    <a class="social" data-s="whatsapp" href="#" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M20 11.7a8 8 0 0 1-11.8 7l-4.2 1.1 1.1-4A8 8 0 1 1 20 11.7z"/><path d="M9.2 8.5c.2-.4.5-.4.8-.4h.4c.1 0 .3 0 .4.4l.8 1.9c.1.2 0 .4-.1.6l-.5.7c-.2.2-.2.4 0 .7.5.9 1.3 1.7 2.2 2.2.3.2.5.2.7 0l.8-1c.2-.2.4-.2.7-.1l1.8.9c.3.1.4.2.4.4 0 .2-.1 1.1-.7 1.7-.5.6-1.5.9-2.1.8-.6 0-2-.3-3.5-1.6-1.8-1.5-3-3.4-3.4-4.1-.4-.8-1.2-2.7.1-4.1z"/></svg>
+    </a>
+    <a class="social" data-s="facebook" href="#" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M14.2 8H17V4.5c-.5-.1-1.6-.2-3-.2-3 0-5 1.8-5 5.2V12H6v4h3v8h4v-8h3.3l.5-4H13V9.9c0-1.2.3-1.9 1.2-1.9z"/></svg>
+    </a>
+  </nav>
+</main>
+
+<script>
+const started=performance.now();
+function show(){
+  const delay=Math.max(0,1700-(performance.now()-started));
+  setTimeout(()=>document.body.classList.add("loaded"),delay);
+}
+if(document.readyState==="complete")show();
+else addEventListener("load",show,{once:true});
+document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener("click",e=>e.preventDefault()));
+</script>
+</body>
+</html>
