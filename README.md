@@ -1,13 +1,20 @@
 # Doctor Perfume
 
-Minimal luxury landing page for Doctor Perfume.
+Official landing page for Doctor Perfume.
 
-## Current version
-- Animated black/gold loading screen
-- Doctor Perfume brand image
-- Instagram / TikTok / WhatsApp / Facebook icons
-- Responsive desktop + mobile layout
-- Static HTML/CSS/JS, ready for Cloudflare Pages
+## Live
+https://doctorperfume.vip
 
-## Before launch
-Replace the `href="#"` values in `index.html` with the real social media links.
+## Production structure
+- `index.html` — complete landing page, styles, and loader
+- `favicon.png` — official browser/site icon
+- `assets/doctor-perfume-bg.jpeg` — main Doctor Perfume artwork
+
+## Social links
+- Instagram: connected
+- WhatsApp: connected
+- Facebook: connected
+- TikTok: waiting for the official profile link
+
+## Deployment
+The `main` branch is deployed to Cloudflare and served from `doctorperfume.vip`.
