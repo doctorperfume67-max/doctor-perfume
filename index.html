@@ -29,20 +29,36 @@ body{font-family:Arial,Helvetica,sans-serif}
   gap:26px;background:#050505;
   transition:opacity .75s ease,visibility .75s ease
 }
-.loader-ring{
-  width:142px;height:142px;border-radius:50%;
-  display:grid;place-items:center;position:relative;
-  border:1px solid rgba(238,210,141,.18);
-  box-shadow:0 0 60px rgba(216,180,94,.06)
+.loader-logo-wrap{
+  display:grid;
+  place-items:center;
+  min-width:150px;
+  min-height:150px;
+  position:relative;
 }
-.loader-ring::before{
-  content:"";position:absolute;inset:-1px;border-radius:50%;
-  border:1px solid transparent;border-top-color:rgba(238,210,141,.95);
-  animation:spin 2s linear infinite
+.loader-logo-wrap::before{
+  content:"";
+  position:absolute;
+  width:128px;
+  height:128px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(238,210,141,.10) 0%,rgba(216,180,94,.035) 46%,transparent 72%);
+  filter:blur(2px);
+  animation:loaderGlow 1.8s ease-in-out infinite;
 }
-.loader-mark{
-  color:var(--gold2);font:44px Georgia,"Times New Roman",serif;
-  letter-spacing:.08em;text-shadow:0 0 20px rgba(238,210,141,.15)
+.loader-logo{
+  position:relative;
+  z-index:1;
+  width:112px;
+  height:112px;
+  object-fit:contain;
+  display:block;
+  filter:
+    drop-shadow(0 0 10px rgba(238,210,141,.16))
+    drop-shadow(0 0 28px rgba(216,180,94,.08));
+  user-select:none;
+  -webkit-user-drag:none;
+  animation:logoPulse 1.8s ease-in-out infinite;
 }
 .loader-line{
   width:122px;height:1px;background:rgba(238,210,141,.14);
@@ -127,6 +143,9 @@ body.loaded .stage{opacity:1}
 
 /* MOBILE */
 @media(max-width:700px){
+  .loader-logo{width:94px;height:94px}
+  .loader-logo-wrap{min-width:130px;min-height:130px}
+  .loader-logo-wrap::before{width:112px;height:112px}
   .poster-shell{padding:12px 10px 84px}
   .poster{
     max-width:94vw;
@@ -147,7 +166,14 @@ body.loaded .stage{opacity:1}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes logoPulse{
+  0%,100%{opacity:.78;transform:scale(.985)}
+  50%{opacity:1;transform:scale(1.025)}
+}
+@keyframes loaderGlow{
+  0%,100%{opacity:.55;transform:scale(.96)}
+  50%{opacity:1;transform:scale(1.06)}
+}
 @keyframes sweep{from{transform:translateX(-120%)}to{transform:translateX(220%)}}
 @keyframes posterIn{
   from{opacity:0;transform:translateY(10px) scale(.985)}
@@ -158,7 +184,9 @@ body.loaded .stage{opacity:1}
 <body>
 
 <div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-ring"><div class="loader-mark">DP</div></div>
+  <div class="loader-logo-wrap">
+    <img class="loader-logo" src="/favicon.png?v=loader1" alt="" draggable="false">
+  </div>
   <div class="loader-line"><span></span></div>
 </div>
 
