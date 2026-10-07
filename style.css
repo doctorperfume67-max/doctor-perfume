@@ -69,10 +69,10 @@ body.loaded .page{opacity:1;visibility:visible;transform:scale(1)}
 }
 .background-image{
   position:absolute;inset:0;
-  background-image:url("assets/doctor-perfume-bg.jpeg");
-  background-position:center center;
-  background-repeat:no-repeat;
-  background-size:cover;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
   transform:scale(1.012);
   animation:bgReveal 1.3s cubic-bezier(.2,.7,.2,1) .18s both;
 }
@@ -137,7 +137,7 @@ body.loaded .page{opacity:1;visibility:visible;transform:scale(1)}
 
 @media(max-width:640px){
   .hero{padding-left:12px;padding-right:12px}
-  .background-image{background-size:cover;background-position:center center}
+  .background-image{object-fit:cover;object-position:center center}
   .social-area{width:min(94vw,370px);gap:9px}
   .socials{gap:8px;padding:7px 8px}
   .social{width:43px;height:43px}
@@ -145,13 +145,12 @@ body.loaded .page{opacity:1;visibility:visible;transform:scale(1)}
 
 @media(max-aspect-ratio:3/4){
   .background-image{
-    background-size:contain;
-    background-color:#050505;
-    background-position:center center;
+    object-fit:contain;
+    object-position:center center;
+    background:#050505;
   }
   .background-overlay{
-    background:
-      linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.02) 58%,rgba(0,0,0,.72) 100%);
+    background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.02) 58%,rgba(0,0,0,.72) 100%);
   }
 }
 
