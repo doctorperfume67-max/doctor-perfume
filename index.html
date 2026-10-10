@@ -19,8 +19,9 @@
 <style>
 :root{--bg:#050505;--gold:#d8b45e;--gold2:#eed28d}
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;background:var(--bg);overflow:hidden}
-body{font-family:Arial,Helvetica,sans-serif}
+html,body{margin:0;width:100%;min-height:100%;background:var(--bg)}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;overflow-y:auto}
 
 /* LOADER */
 .loader{
@@ -84,8 +85,12 @@ body.loaded .loader{opacity:0;visibility:hidden}
 
 /* PAGE */
 .stage{
-  position:fixed;inset:0;overflow:hidden;background:#050505;
-  opacity:0;transition:opacity .9s ease
+  position:relative;
+  min-height:100svh;
+  overflow:hidden;
+  background:#050505;
+  opacity:0;
+  transition:opacity .9s ease
 }
 body.loaded .stage{opacity:1}
 
@@ -152,6 +157,95 @@ body.loaded .stage{opacity:1}
 .social[data-social="facebook"] svg path,
 .social[data-social="tiktok"] svg path{fill:currentColor;stroke:none}
 
+/* LOCATIONS */
+.locations-cue{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  bottom:8px;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:rgba(238,210,141,.72);
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:.2s ease
+}
+.locations-cue:hover{color:var(--gold2)}
+.locations-cue svg{
+  width:15px;height:15px;
+  fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round
+}
+.locations-section{
+  position:relative;
+  z-index:2;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(216,180,94,.07),transparent 34%),
+    #050505;
+  border-top:1px solid rgba(238,210,141,.10);
+  padding:78px 20px 92px;
+}
+.locations-inner{
+  width:min(680px,100%);
+  margin:0 auto;
+  text-align:center;
+}
+.locations-kicker{
+  margin:0 0 9px;
+  color:rgba(238,210,141,.66);
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.locations-section h2{
+  margin:0;
+  color:var(--gold2);
+  font:500 clamp(30px,5vw,44px) Georgia,"Times New Roman",serif;
+  letter-spacing:.02em;
+}
+.locations-subtitle{
+  margin:12px auto 30px;
+  color:rgba(255,255,255,.55);
+  font-size:14px;
+}
+.location-buttons{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.location-button{
+  min-height:66px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:0 22px;
+  border-radius:16px;
+  text-decoration:none;
+  color:var(--gold2);
+  background:linear-gradient(180deg,rgba(216,180,94,.07),rgba(216,180,94,.025));
+  border:1px solid rgba(238,210,141,.17);
+  box-shadow:0 14px 34px rgba(0,0,0,.24);
+  transition:transform .2s ease,border-color .2s ease,background .2s ease
+}
+.location-button:hover{
+  transform:translateY(-2px);
+  border-color:rgba(238,210,141,.42);
+  background:linear-gradient(180deg,rgba(216,180,94,.11),rgba(216,180,94,.045))
+}
+.location-button span:first-child{
+  font-size:15px;
+  letter-spacing:.04em;
+}
+.location-arrow{
+  color:rgba(238,210,141,.62);
+  font-size:18px;
+}
+
 /* MOBILE */
 @media(max-width:700px){
   .loader-logo{width:82px;height:82px}
@@ -163,7 +257,11 @@ body.loaded .stage{opacity:1}
     max-width:94vw;
     max-height:calc(100vh - 105px)
   }
-  .socials{bottom:max(14px,env(safe-area-inset-bottom))}
+  .socials{bottom:max(34px,calc(env(safe-area-inset-bottom) + 20px))}
+  .locations-cue{bottom:max(8px,env(safe-area-inset-bottom))}
+  .location-buttons{grid-template-columns:1fr}
+  .locations-section{padding:64px 16px 78px}
+  .location-button{min-height:62px;padding:0 19px}
   .social{width:40px;height:40px}
 }
 
@@ -171,7 +269,8 @@ body.loaded .stage{opacity:1}
 @media(max-height:650px) and (min-width:701px){
   .poster{max-height:calc(100vh - 105px);max-width:70vw}
   .poster-shell{padding-bottom:80px}
-  .socials{bottom:14px}
+  .socials{bottom:30px}
+  .locations-cue{bottom:8px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -226,7 +325,35 @@ body.loaded .stage{opacity:1}
       <svg viewBox="0 0 24 24"><path d="M14.2 8H17V4.5c-.5-.1-1.6-.2-3-.2-3 0-5 1.8-5 5.2V12H6v4h3v8h4v-8h3.3l.5-4H13V9.9c0-1.2.3-1.9 1.2-1.9z"/></svg>
     </a>
   </nav>
+
+  <a class="locations-cue" href="#locations" aria-label="Scroll to store locations">
+    <span>Our Locations</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
 </main>
+
+<section class="locations-section" id="locations" aria-labelledby="locations-title">
+  <div class="locations-inner">
+    <p class="locations-kicker">Doctor Perfume</p>
+    <h2 id="locations-title">Our Locations</h2>
+    <p class="locations-subtitle">Choose a branch to contact it on WhatsApp.</p>
+
+    <div class="location-buttons">
+      <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Location%201." target="_blank" rel="noopener noreferrer">
+        <span>Location 1</span><span class="location-arrow">↗</span>
+      </a>
+      <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Location%202." target="_blank" rel="noopener noreferrer">
+        <span>Location 2</span><span class="location-arrow">↗</span>
+      </a>
+      <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Location%203." target="_blank" rel="noopener noreferrer">
+        <span>Location 3</span><span class="location-arrow">↗</span>
+      </a>
+      <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Location%204." target="_blank" rel="noopener noreferrer">
+        <span>Location 4</span><span class="location-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <script>
 const started=performance.now();
