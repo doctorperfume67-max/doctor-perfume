@@ -90,20 +90,31 @@ body.loaded .loader{opacity:0;visibility:hidden}
   overflow:hidden;
   background:#050505;
   opacity:0;
-  transform:scale(1.012);
-  filter:brightness(.82);
+  transform:scale(1.018);
+  filter:brightness(.76) saturate(.92);
   transition:
-    opacity 1.35s ease,
-    transform 1.55s cubic-bezier(.2,.7,.2,1),
-    filter 1.35s ease
+    opacity 1.5s ease,
+    transform 1.7s cubic-bezier(.16,.78,.2,1),
+    filter 1.55s ease
 }
-body.loaded .stage{opacity:1;transform:scale(1);filter:brightness(1)}
+body.loaded .stage{
+  opacity:1;
+  transform:scale(1);
+  filter:brightness(1) saturate(1)
+}
 
 /* SAME EXACT PHOTO fills the side/background */
 .backdrop{
   position:absolute;inset:-5%;
   width:110%;height:110%;
   object-fit:cover;object-position:center;
+  filter:blur(34px) brightness(.18) saturate(.72);
+  transform:scale(1.085);
+  transition:
+    filter 1.8s cubic-bezier(.16,.78,.2,1),
+    transform 1.9s cubic-bezier(.16,.78,.2,1)
+}
+body.loaded .backdrop{
   filter:blur(28px) brightness(.24) saturate(.8);
   transform:scale(1.06)
 }
@@ -129,20 +140,31 @@ body.loaded .stage{opacity:1;transform:scale(1);filter:brightness(1)}
   object-position:center;
   filter:drop-shadow(0 24px 48px rgba(0,0,0,.55));
   user-select:none;-webkit-user-drag:none;
-  animation:posterIn 1.45s cubic-bezier(.16,.75,.2,1) .12s both
+  animation:posterIn 1.62s cubic-bezier(.16,.78,.2,1) .18s both
 }
 
 /* SOCIALS */
 .socials{
   position:absolute;z-index:4;
-  left:50%;bottom:24px;transform:translateX(-50%);
+  left:50%;bottom:24px;
+  transform:translate(-50%,10px) scale(.97);
+  opacity:0;
   display:flex;align-items:center;gap:12px;
   padding:9px 12px;border-radius:999px;
   background:rgba(0,0,0,.52);
   border:1px solid rgba(238,210,141,.17);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
-  box-shadow:0 16px 40px rgba(0,0,0,.35)
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
+  transition:
+    opacity .8s ease .62s,
+    transform .9s cubic-bezier(.16,.78,.2,1) .62s,
+    border-color .24s ease,
+    box-shadow .24s ease
+}
+body.loaded .socials{
+  opacity:1;
+  transform:translate(-50%,0) scale(1)
 }
 .social{
   width:52px;height:52px;border-radius:50%;
@@ -178,7 +200,8 @@ body.loaded .stage{opacity:1;transform:scale(1);filter:brightness(1)}
   z-index:4;
   left:50%;
   bottom:8px;
-  transform:translateX(-50%);
+  transform:translate(-50%,8px);
+  opacity:0;
   display:flex;
   align-items:center;
   gap:6px;
@@ -187,9 +210,16 @@ body.loaded .stage{opacity:1;transform:scale(1);filter:brightness(1)}
   font-size:12px;
   letter-spacing:.12em;
   text-transform:uppercase;
-  transition:.2s ease
+  transition:
+    color .2s ease,
+    opacity .7s ease .82s,
+    transform .8s cubic-bezier(.16,.78,.2,1) .82s
 }
 .locations-cue:hover{color:var(--gold2)}
+body.loaded .locations-cue{
+  opacity:1;
+  transform:translate(-50%,0)
+}
 .locations-cue svg{
   width:15px;height:15px;
   fill:none;stroke:currentColor;stroke-width:1.8;
@@ -400,9 +430,21 @@ body.loaded .stage{opacity:1;transform:scale(1);filter:brightness(1)}
 @keyframes loaderSpin{to{transform:rotate(360deg)}}
 @keyframes sweep{from{transform:translateX(-120%)}to{transform:translateX(220%)}}
 @keyframes posterIn{
-  from{opacity:0;transform:translateY(22px) scale(.965);filter:blur(3px)}
-  55%{opacity:.82;filter:blur(.6px)}
-  to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+  0%{
+    opacity:0;
+    transform:translateY(30px) scale(.952);
+    filter:blur(5px) brightness(.82)
+  }
+  48%{
+    opacity:.72;
+    transform:translateY(10px) scale(.985);
+    filter:blur(1.4px) brightness(.94)
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0) brightness(1)
+  }
 }
 </style>
 </head>
