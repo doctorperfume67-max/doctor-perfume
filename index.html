@@ -477,13 +477,46 @@ body.loaded .stage{opacity:1;transform:scale(1);filter:brightness(1)}
 
 <script>
 const started=performance.now();
+
+/* Always open/reload from the hero instead of restoring the old scroll position. */
+if("scrollRestoration" in history) history.scrollRestoration="manual";
+if(location.hash){
+  history.replaceState(null,"",location.pathname+location.search);
+}
+window.scrollTo(0,0);
+
 function reveal(){
   const remain=Math.max(0,1800-(performance.now()-started));
   setTimeout(()=>document.body.classList.add("loaded"),remain);
 }
-if(document.readyState==="complete") reveal();
-else window.addEventListener("load",reveal,{once:true});
+
+function resetToTop(){
+  window.scrollTo({top:0,left:0,behavior:"auto"});
+}
+
+if(document.readyState==="complete"){
+  resetToTop();
+  reveal();
+}else{
+  window.addEventListener("load",()=>{
+    resetToTop();
+    reveal();
+  },{once:true});
+}
+
+window.addEventListener("pageshow",resetToTop);
+
 document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener("click",e=>e.preventDefault()));
+
+const locationsCue=document.querySelector(".locations-cue");
+const locationsSection=document.querySelector("#locations");
+if(locationsCue && locationsSection){
+  locationsCue.addEventListener("click",e=>{
+    e.preventDefault();
+    locationsSection.scrollIntoView({behavior:"smooth",block:"start"});
+    history.replaceState(null,"",location.pathname+location.search);
+  });
+}
 
 const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(!reduceMotion && "IntersectionObserver" in window){
