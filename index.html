@@ -207,15 +207,27 @@ body.loaded .stage{opacity:1}
   font:500 clamp(30px,5vw,44px) Georgia,"Times New Roman",serif;
   letter-spacing:.02em;
 }
-.locations-subtitle{
-  margin:12px auto 30px;
-  color:rgba(255,255,255,.55);
-  font-size:14px;
+.locations-group-title{
+  margin:18px auto 18px;
+  color:var(--gold2);
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:.08em;
+}
+.locations-group-title--wholesale{
+  margin:24px auto 16px;
 }
 .location-buttons{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
+}
+.location-buttons--retail{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.location-buttons--wholesale{
+  grid-template-columns:minmax(0,1fr);
+  width:50%;
+  margin:0 auto;
 }
 .location-button{
   min-height:66px;
@@ -237,23 +249,6 @@ body.loaded .stage{opacity:1}
   border-color:rgba(238,210,141,.42);
   background:linear-gradient(180deg,rgba(216,180,94,.11),rgba(216,180,94,.045))
 }
-.location-copy{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:4px;
-  text-align:left;
-}
-.location-copy strong{
-  font-size:15px;
-  font-weight:600;
-  letter-spacing:.04em;
-}
-.location-copy small{
-  color:rgba(238,210,141,.62);
-  font-size:12px;
-  letter-spacing:.08em;
-}
 .location-button--wholesale{
   border-color:rgba(238,210,141,.36);
   background:
@@ -262,13 +257,15 @@ body.loaded .stage{opacity:1}
     0 14px 34px rgba(0,0,0,.28),
     inset 0 0 0 1px rgba(238,210,141,.035);
 }
-.location-button--wholesale .location-copy small{
-  color:var(--gold2);
-}
 .location-button--wholesale:hover{
   border-color:rgba(238,210,141,.68);
   background:
     linear-gradient(135deg,rgba(216,180,94,.20),rgba(216,180,94,.065));
+}
+.location-name{
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:.04em;
 }
 .location-arrow{
   color:rgba(238,210,141,.62);
@@ -288,7 +285,8 @@ body.loaded .stage{opacity:1}
   }
   .socials{bottom:max(34px,calc(env(safe-area-inset-bottom) + 20px))}
   .locations-cue{bottom:max(8px,env(safe-area-inset-bottom))}
-  .location-buttons{grid-template-columns:1fr}
+  .location-buttons--retail{grid-template-columns:1fr}
+  .location-buttons--wholesale{width:100%}
   .locations-section{padding:64px 16px 78px}
   .location-button{min-height:62px;padding:0 19px}
   .social{width:40px;height:40px}
@@ -365,30 +363,25 @@ body.loaded .stage{opacity:1}
   <div class="locations-inner">
     <p class="locations-kicker">Doctor Perfume</p>
     <h2 id="locations-title">Our Locations</h2>
-    <p class="locations-subtitle">Choose a branch to contact it on WhatsApp.</p>
+    <p class="locations-group-title" lang="ar" dir="rtl">مفرق</p>
 
-    <div class="location-buttons">
+    <div class="location-buttons location-buttons--retail">
       <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Retail%20Branch%201." target="_blank" rel="noopener noreferrer">
-        <span class="location-copy">
-          <strong>Location 1</strong>
-          <small>مفرق</small>
-        </span>
+        <span class="location-name">Location 1</span>
         <span class="location-arrow">↗</span>
       </a>
 
       <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Retail%20Branch%202." target="_blank" rel="noopener noreferrer">
-        <span class="location-copy">
-          <strong>Location 2</strong>
-          <small>مفرق</small>
-        </span>
+        <span class="location-name">Location 2</span>
         <span class="location-arrow">↗</span>
       </a>
+    </div>
 
+    <p class="locations-group-title locations-group-title--wholesale" lang="ar" dir="rtl">جملة</p>
+
+    <div class="location-buttons location-buttons--wholesale">
       <a class="location-button location-button--wholesale" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20the%20Wholesale%20Branch." target="_blank" rel="noopener noreferrer">
-        <span class="location-copy">
-          <strong>Location 3</strong>
-          <small>جملة</small>
-        </span>
+        <span class="location-name">Location 3</span>
         <span class="location-arrow">↗</span>
       </a>
     </div>
