@@ -268,8 +268,21 @@ body.loaded .stage{opacity:1}
   letter-spacing:.04em;
 }
 .location-arrow{
-  color:rgba(238,210,141,.62);
-  font-size:18px;
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  display:grid;
+  place-items:center;
+  color:rgba(238,210,141,.72);
+}
+.location-arrow svg{
+  width:19px;
+  height:19px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
 /* MOBILE */
@@ -365,12 +378,12 @@ body.loaded .stage{opacity:1}
     <div class="location-buttons location-buttons--retail">
       <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Retail%20Branch%201." target="_blank" rel="noopener noreferrer">
         <span class="location-name">Location 1</span>
-        <span class="location-arrow">↗</span>
+        <span class="location-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
       </a>
 
       <a class="location-button" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20Retail%20Branch%202." target="_blank" rel="noopener noreferrer">
         <span class="location-name">Location 2</span>
-        <span class="location-arrow">↗</span>
+        <span class="location-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
 
@@ -379,7 +392,7 @@ body.loaded .stage{opacity:1}
     <div class="location-buttons location-buttons--wholesale">
       <a class="location-button location-button--wholesale" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20the%20Wholesale%20Branch." target="_blank" rel="noopener noreferrer">
         <span class="location-name">Location 3</span>
-        <span class="location-arrow">↗</span>
+        <span class="location-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
   </div>
