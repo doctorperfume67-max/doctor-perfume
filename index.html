@@ -494,6 +494,22 @@ body.loaded .locations-cue{
 
 /* MOBILE */
 @media(max-width:700px){
+  .stage{background:#030303}
+  .backdrop{display:none}
+  .vignette{
+    background:
+      radial-gradient(circle at 50% 48%,rgba(216,180,94,.035),transparent 48%),
+      linear-gradient(180deg,#030303 0%,#050505 58%,#030303 100%)
+  }
+  .poster-shell{
+    padding:8px 12px 116px;
+    align-items:center
+  }
+  .poster{
+    max-width:calc(100vw - 24px);
+    max-height:calc(100svh - 150px);
+    filter:drop-shadow(0 20px 42px rgba(0,0,0,.62))
+  }
   .stage::after{inset:10px;background-size:38px 1px,1px 38px,38px 1px,1px 38px,38px 1px,1px 38px,38px 1px,1px 38px}
   .loader-logo{width:82px;height:82px}
   .loader-logo-wrap{width:130px;height:130px}
