@@ -122,42 +122,60 @@ body.loaded .stage{
 }
 body.loaded .stage::after{opacity:.48}
 
-/* SAME EXACT PHOTO fills the side/background */
-.backdrop{
-  position:absolute;inset:-5%;
-  width:110%;height:110%;
-  object-fit:cover;object-position:center;
-  filter:blur(34px) brightness(.18) saturate(.72);
-  transform:scale(1.085);
-  transition:
-    filter 1.8s cubic-bezier(.16,.78,.2,1),
-    transform 1.9s cubic-bezier(.16,.78,.2,1)
+/* HERO BACKGROUND — layered like a proper luxury landing page */
+.hero-light{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 44% 50% at 50% 42%,rgba(216,180,94,.085) 0%,rgba(216,180,94,.025) 36%,transparent 68%),
+    radial-gradient(ellipse 78% 58% at 50% 100%,rgba(216,180,94,.035),transparent 64%);
+  opacity:.86;
+  transform:scale(1.04);
+  transition:opacity 1.8s ease,transform 2s cubic-bezier(.16,.78,.2,1)
 }
-body.loaded .backdrop{
-  filter:blur(28px) brightness(.24) saturate(.8);
-  transform:scale(1.06)
-}
+body.loaded .hero-light{opacity:1;transform:scale(1)}
+
 .vignette{
   position:absolute;inset:0;
+  pointer-events:none;
   background:
-    radial-gradient(circle at center,rgba(0,0,0,.02) 0%,rgba(0,0,0,.12) 55%,rgba(0,0,0,.42) 100%),
-    linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.03) 65%,rgba(0,0,0,.42) 100%)
+    linear-gradient(180deg,rgba(0,0,0,.24) 0%,transparent 17%,transparent 72%,rgba(0,0,0,.56) 100%),
+    radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.30) 100%)
 }
 
-/* SAME EXACT PHOTO remains fully visible and centered */
+/* The artwork is a foreground layer, not a pasted poster/background. */
 .poster-shell{
   position:absolute;inset:0;
   display:flex;align-items:center;justify-content:center;
-  padding:20px 20px 92px;
+  padding:16px 24px 118px;
+}
+.poster-shell::before{
+  content:"";
+  position:absolute;
+  left:50%;top:46%;
+  width:min(680px,74vw);
+  height:min(680px,74vw);
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(216,180,94,.055),rgba(216,180,94,.018) 44%,transparent 70%);
+  filter:blur(18px);
+  pointer-events:none
 }
 .poster{
+  position:relative;
+  z-index:1;
   display:block;
   width:auto;height:auto;
-  max-width:min(88vw,720px);
-  max-height:calc(100vh - 125px);
+  max-width:min(90vw,760px);
+  max-height:calc(100svh - 150px);
   object-fit:contain;
   object-position:center;
-  filter:drop-shadow(0 24px 48px rgba(0,0,0,.55));
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 3%,#000 96%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 3%,#000 96%,transparent 100%);
+  filter:
+    drop-shadow(0 24px 54px rgba(0,0,0,.56))
+    drop-shadow(0 0 22px rgba(216,180,94,.035));
   user-select:none;-webkit-user-drag:none;
   animation:posterIn 1.62s cubic-bezier(.16,.78,.2,1) .18s both
 }
@@ -495,31 +513,39 @@ body.loaded .locations-cue{
 /* MOBILE */
 @media(max-width:700px){
   .stage{background:#030303}
-  .backdrop{display:none}
+  .hero-light{
+    background:
+      radial-gradient(ellipse 70% 45% at 50% 38%,rgba(216,180,94,.075),rgba(216,180,94,.018) 42%,transparent 72%),
+      radial-gradient(ellipse 90% 40% at 50% 100%,rgba(216,180,94,.025),transparent 68%)
+  }
   .vignette{
     background:
-      radial-gradient(circle at 50% 48%,rgba(216,180,94,.035),transparent 48%),
-      linear-gradient(180deg,#030303 0%,#050505 58%,#030303 100%)
+      linear-gradient(180deg,rgba(0,0,0,.34) 0%,transparent 14%,transparent 70%,rgba(0,0,0,.66) 100%),
+      radial-gradient(ellipse at center,transparent 46%,rgba(0,0,0,.26) 100%)
   }
   .poster-shell{
-    padding:8px 12px 116px;
+    padding:4px 8px 128px;
     align-items:center
   }
+  .poster-shell::before{
+    top:43%;
+    width:92vw;height:92vw;
+    filter:blur(14px)
+  }
   .poster{
-    max-width:calc(100vw - 24px);
-    max-height:calc(100svh - 150px);
-    filter:drop-shadow(0 20px 42px rgba(0,0,0,.62))
+    max-width:100vw;
+    max-height:calc(100svh - 118px);
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 2.2%,#000 96.8%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0%,#000 2.2%,#000 96.8%,transparent 100%);
+    filter:
+      drop-shadow(0 20px 42px rgba(0,0,0,.62))
+      drop-shadow(0 0 18px rgba(216,180,94,.028))
   }
   .stage::after{inset:10px;background-size:38px 1px,1px 38px,38px 1px,1px 38px,38px 1px,1px 38px,38px 1px,1px 38px}
   .loader-logo{width:82px;height:82px}
   .loader-logo-wrap{width:130px;height:130px}
   .loader-logo-wrap::before,
   .loader-logo-wrap::after{inset:9px}
-  .poster-shell{padding:12px 10px 84px}
-  .poster{
-    max-width:94vw;
-    max-height:calc(100vh - 105px)
-  }
   .socials{bottom:max(34px,calc(env(safe-area-inset-bottom) + 20px))}
   .locations-cue{bottom:max(8px,env(safe-area-inset-bottom))}
   .location-buttons--retail{grid-template-columns:1fr}
@@ -531,8 +557,8 @@ body.loaded .locations-cue{
 
 /* SHORT SCREENS */
 @media(max-height:650px) and (min-width:701px){
-  .poster{max-height:calc(100vh - 105px);max-width:70vw}
-  .poster-shell{padding-bottom:80px}
+  .poster{max-height:calc(100svh - 118px);max-width:72vw}
+  .poster-shell{padding-bottom:92px}
   .socials{bottom:30px}
   .locations-cue{bottom:8px}
 }
@@ -585,9 +611,7 @@ body.loaded .locations-cue{
 </div>
 
 <main class="stage">
-  <img class="backdrop"
-       src="/assets/doctor-perfume-bg.png"
-       alt="" aria-hidden="true" draggable="false">
+  <div class="hero-light" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 
   <div class="poster-shell">
