@@ -466,6 +466,51 @@ body.loaded .locations-cue{
   background:
     linear-gradient(135deg,rgba(216,180,94,.20),rgba(216,180,94,.065));
 }
+.location-button--coming-soon{
+  cursor:default;
+  border-color:rgba(238,210,141,.30);
+  background:
+    linear-gradient(135deg,rgba(216,180,94,.105),rgba(216,180,94,.035));
+}
+.location-button--coming-soon:hover{
+  transform:none;
+  border-color:rgba(238,210,141,.30);
+  background:
+    linear-gradient(135deg,rgba(216,180,94,.105),rgba(216,180,94,.035));
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.28),
+    inset 0 0 0 1px rgba(238,210,141,.035);
+}
+.location-button--coming-soon::before{display:none}
+.coming-soon-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  text-align:right
+}
+.coming-soon-sub{
+  color:rgba(238,210,141,.48);
+  font-size:11px;
+  letter-spacing:.06em
+}
+.coming-soon-icon{
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  display:grid;
+  place-items:center;
+  color:rgba(238,210,141,.66)
+}
+.coming-soon-icon svg{
+  width:19px;
+  height:19px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
 .location-name{
   font-size:14px;
   font-weight:600;
@@ -743,10 +788,18 @@ body.loaded .locations-cue{
     <p class="locations-group-title locations-group-title--wholesale reveal-item" style="--reveal-delay:300ms" lang="ar" dir="rtl">جملة</p>
 
     <div class="location-buttons location-buttons--wholesale">
-      <a class="location-button location-button--wholesale reveal-item" style="--reveal-delay:360ms" href="https://wa.me/963992517098?text=Hello%20Doctor%20Perfume%2C%20I%27m%20contacting%20the%20Wholesale%20Branch." target="_blank" rel="noopener noreferrer">
-        <span class="location-name">Location 3</span>
-        <span class="location-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
-      </a>
+      <div class="location-button location-button--wholesale location-button--coming-soon reveal-item" style="--reveal-delay:360ms" aria-label="Wholesale branch opening soon">
+        <span class="coming-soon-copy" lang="ar" dir="rtl">
+          <span class="location-name">سنفتح قريباً</span>
+          <span class="coming-soon-sub">ترقبونا</span>
+        </span>
+        <span class="coming-soon-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8.5"/>
+            <path d="M12 7.5v5l3 2"/>
+          </svg>
+        </span>
+      </div>
     </div>
   </div>
 </section>
