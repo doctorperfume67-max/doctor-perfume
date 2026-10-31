@@ -1,20 +1,29 @@
 # Doctor Perfume
 
-Official landing page for Doctor Perfume.
+Official gateway website for Doctor Perfume.
 
 ## Live
 https://doctorperfume.vip
 
-## Production structure
-- `index.html` — complete landing page, styles, and loader
-- `favicon.png` — official browser/site icon
-- `assets/doctor-perfume-bg.jpeg` — main Doctor Perfume artwork
+## Production files
+- `index.html` — complete landing page with inline styles and scripts
+- `favicon.png` — official site/favicon logo
+- `assets/doctor-perfume-bg.png` — main Doctor Perfume hero artwork
 
-## Social links
+## Current links
 - Instagram: connected
-- WhatsApp: connected
 - Facebook: connected
-- TikTok: waiting for the official profile link
+- TikTok: coming soon
+- WhatsApp: handled per branch
+- Google Maps: handled per branch
+
+## Branches
+- دمشق الميدان
+- صحنايا
+- جملة — coming soon
 
 ## Deployment
-The `main` branch is deployed to Cloudflare and served from `doctorperfume.vip`.
+The `main` branch is the production site for `doctorperfume.vip`.
+
+## Backup
+The original approved design is preserved on the `backup-old-style` branch.
