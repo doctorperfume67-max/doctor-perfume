@@ -20,6 +20,7 @@ https://doctorperfume.vip
 ## Branches
 - دمشق الميدان
 - صحنايا
+- جديدة عرطوز
 - جملة — coming soon
 
 ## Deployment
